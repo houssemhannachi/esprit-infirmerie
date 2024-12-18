@@ -1,9 +1,32 @@
 header {
-    background-color: #B72126;
-    padding: 10px 0; 
-    text-align: center; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #B72126;
+  border-bottom: 1px solid #B72126;
 }
+
 .logo img {
-  max-width: 100px;
-  margin-left: 20px;
+  height: 50px;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+header .navigation {
+  z-index: 10;
+  position: relative;
 }
