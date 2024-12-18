@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // In production, consider enabling CSRF and using tokens
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/public/**").permitAll()
+                        .requestMatchers("/appointments/**").permitAll()
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers("/teacher/**").hasRole("TEACHER")
                         .requestMatchers("/physician/**").hasRole("PHYSICIAN")
