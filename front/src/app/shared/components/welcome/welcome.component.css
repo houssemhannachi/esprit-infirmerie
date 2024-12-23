@@ -7,7 +7,6 @@
   min-height: 90vh;
   background-image: url("/assets/images/background.jpeg");
   background-size: cover;
-  background-position: center;
   padding-right: 20%;
 }
 
@@ -33,53 +32,4 @@
   font-size: 24px;
 }
 
-.login-form {
-  position: relative;
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  width: 300px;
-}
-
-.login-form h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  margin-bottom: 15px;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
 

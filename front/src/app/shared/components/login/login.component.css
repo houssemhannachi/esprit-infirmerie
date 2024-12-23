@@ -1,50 +1,92 @@
 .login-form {
-    position: relative;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 250px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px); /* Apply blur effect to background */
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Border with slight transparency */
 }
 
 .login-form h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
 }
 
+/* Input field group */
 .input-group {
-    margin-bottom: 20px;
+  margin-bottom: 18px; /* Reduced space between input groups */
 }
 
+/* Label styling */
 .input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
 }
 
+/* Input field styling */
 .input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
+/* Focus effect for input fields */
+.input-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* Dropdown (select) styling */
+.input-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.input-group select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* Button styling */
 button {
-    margin-bottom: 15px;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background-color: #650d0d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: rgb(248, 0, 0);
+  transform: translateY(-2px); /* Slight hover lift effect */
 }
 
+button:active {
+  background-color: #004085; /* Darker shade when clicked */
+  transform: translateY(1px); /* Button depression effect */
+}
