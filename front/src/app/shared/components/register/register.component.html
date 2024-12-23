@@ -1,4 +1,7 @@
-<div class="login-container">
+<app-header></app-header>
+<div class="body-container">
+  <app-welcome></app-welcome>
+  <div class="login-container">
   <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <h2>Inscription</h2>
 
@@ -41,3 +44,5 @@
     <button type="submit" name="submit">S'inscrire</button>
   </form>
 </div>
+</div>
+<app-footer></app-footer>

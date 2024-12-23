@@ -1,3 +1,15 @@
+
+.body-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 90vh;
+  background-image: url("/assets/images/background.jpeg");
+  background-size: cover;
+  padding-right: 20%;
+}
+
 .login-form {
   position: relative;
   z-index: 1;
