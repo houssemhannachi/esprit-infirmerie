@@ -1,3 +1,38 @@
 <app-header></app-header>
-<p>make-appointment works!</p>
+<div class="appointment-container">
+  <form (ngSubmit)="submitAppointment()" class="appointment-form">
+    <h2 class="form-title">Prise de rendez-vous</h2>
+
+    <!-- Classe Input -->
+    <div class="form-group">
+      <label for="classe">Classe</label>
+      <input type="text" id="classe" name="classe" [(ngModel)]="appointment.classe" required/>
+    </div>
+
+    <!-- Type de rendez-vous Select -->
+    <div class="form-group">
+      <label for="type">Type de rendez-vous</label>
+      <select id="type" name="type" [(ngModel)]="appointment.type" required>
+        <option value="" disabled selected>Choisir un type</option>
+        <option value="medecin">Médecin</option>
+        <option value="infirmier">Infirmier</option>
+      </select>
+    </div>
+
+    <!-- Date Input -->
+    <div class="form-group">
+      <label for="date">Choisir une date</label>
+      <input type="date" id="date" name="date" [(ngModel)]="appointment.date" required/>
+    </div>
+
+    <!-- Text Input -->
+    <div class="form-group">
+      <label for="notes">Décrire votre état :</label>
+      <textarea id="notes" name="notes" [(ngModel)]="appointment.notes"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn">Prendre rendez-vous</button>
+  </form>
+</div>
 <app-footer></app-footer>
