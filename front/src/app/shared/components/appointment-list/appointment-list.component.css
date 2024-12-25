@@ -1,0 +1,46 @@
+.appointment-list-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+.appointment-table th, .appointment-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.appointment-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.appointment-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.red-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.green-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+}

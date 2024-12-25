@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {UserComponent} from '../user/user.component';
-import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {AppointmentService} from '../../../core/services/appointment.service';
 
 @Component({
   selector: 'app-make-appointment',
@@ -18,12 +18,28 @@ export class MakeAppointmentComponent {
     classe: '',
     type: '',
     date: '',
-    notes: ''
+    notes: '',
   };
 
-  submitAppointment() {
-    console.log('Appointment Submitted:', this.appointment);
-    // You can handle further logic here, such as sending the data to a backend.
+  constructor(private appointmentService: AppointmentService) {
+  }
+
+  createAppointment() {
+    this.appointment.student=1;
+    if (this.appointment.type === 'medecin') {
+      this.appointment.professional = 2;
+    } else if (this.appointment.type === 'infirmier') {
+      this.appointment.professional = 3;
+    }
+    console.log(this.appointment);
+    this.appointmentService.createAppointment(this.appointment).subscribe(
+      (response) => {
+        console.log('Appointment created successfully:', response);
+      },
+      (error) => {
+        console.error('Error creating appointment:', error);
+      }
+    );
   }
 
 }

@@ -1,5 +1,6 @@
 package com.esprit.esprit_demo.controller;
 
+import com.esprit.esprit_demo.dto.AppointmentDto;
 import com.esprit.esprit_demo.entity.Appointment;
 import com.esprit.esprit_demo.service.AppointmentService;
 import org.springframework.http.ResponseEntity;
@@ -29,19 +30,19 @@ public class AppointmentController {
     }
 
     @PostMapping
-    public Appointment createAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.saveAppointment(appointment);
+    public Appointment createAppointment(@RequestBody AppointmentDto appointmentDto) {
+        return appointmentService.saveAppointment(appointmentDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
-        return appointmentService.getAppointmentById(id)
-                .map(existingAppointment -> {
-                    appointment.setId(id);
-                    return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
+    //@PutMapping("/{id}")
+    //public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
+    //  return appointmentService.getAppointmentById(id)
+    //          .map(existingAppointment -> {
+    //            appointment.setId(id);
+    //          return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
+    //    })
+    //  .orElse(ResponseEntity.notFound().build());
+    //}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable Long id) {

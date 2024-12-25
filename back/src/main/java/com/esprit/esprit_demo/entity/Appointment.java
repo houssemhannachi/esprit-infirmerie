@@ -21,8 +21,8 @@ public class Appointment {
     private User professional;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date appointmentDate;
+    private Date date;
 
     private String notes;
+    private Boolean state = false;
 }

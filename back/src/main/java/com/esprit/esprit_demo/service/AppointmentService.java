@@ -1,7 +1,10 @@
 package com.esprit.esprit_demo.service;
 
 import com.esprit.esprit_demo.dao.AppointmentRepository;
+import com.esprit.esprit_demo.dao.UserRepository;
+import com.esprit.esprit_demo.dto.AppointmentDto;
 import com.esprit.esprit_demo.entity.Appointment;
+import com.esprit.esprit_demo.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +13,11 @@ import java.util.Optional;
 @Service
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
+    private final UserRepository userRepository;
 
-    public AppointmentService(AppointmentRepository appointmentRepository) {
+    public AppointmentService(AppointmentRepository appointmentRepository, UserRepository userRepository) {
         this.appointmentRepository = appointmentRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Appointment> getAllAppointments() {
@@ -23,7 +28,18 @@ public class AppointmentService {
         return appointmentRepository.findById(id);
     }
 
-    public Appointment saveAppointment(Appointment appointment) {
+    public Appointment saveAppointment(AppointmentDto appointmentDto) {
+        User student = userRepository.findById(appointmentDto.getStudent())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+        User professional = userRepository.findById(appointmentDto.getProfessional())
+                .orElseThrow(() -> new RuntimeException("Professional not found"));
+
+        Appointment appointment = new Appointment();
+        appointment.setStudent(student);
+        appointment.setProfessional(professional);
+        appointment.setDate(appointmentDto.getDate());
+        appointment.setNotes(appointmentDto.getNotes());
+
         return appointmentRepository.save(appointment);
     }
 
