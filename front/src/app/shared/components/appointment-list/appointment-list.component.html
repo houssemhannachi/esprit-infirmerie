@@ -1,35 +1,37 @@
 <app-header></app-header>
+<div style="display: flex">
 
-<div class="appointment-list-container">
-  <h2>Liste des rendez-vous</h2>
-  <table class="appointment-table">
-    <thead>
-    <tr>
-      <th>Classe</th>
-      <th>Type de rendez-vous</th>
-      <th>Date</th>
-      <th>État</th>
-      <th>Réponse</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let appointment of appointments">
-      <td>{{ appointment.student.username }}</td>
-      <td>{{ appointment.professional.role }}</td>
-      <td>{{ appointment.date | date: 'yyyy-MM-dd' }}</td>
-      <td>{{ appointment.notes }}</td>
-      <td>
+  <app-left-side-bar></app-left-side-bar>
+  <div class="appointment-list-container" style="width: 100%">
+    <h2>Liste des rendez-vous</h2>
+    <table class="appointment-table">
+      <thead>
+      <tr>
+        <th>Classe</th>
+        <th>Type de rendez-vous</th>
+        <th>Date</th>
+        <th>État</th>
+        <th>Réponse</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.student.username }}</td>
+        <td>{{ appointment.professional.role }}</td>
+        <td>{{ appointment.date | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ appointment.notes }}</td>
+        <td>
   <span
     [ngClass]="{
       'red-circle': appointment.state === null || appointment.state === false,
       'green-circle': appointment.state === true
     }"
-    >
+  >
   </span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
 <app-footer></app-footer>

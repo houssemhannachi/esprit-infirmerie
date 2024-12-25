@@ -4,10 +4,11 @@ import {FooterComponent} from '../footer/footer.component';
 import {UserComponent} from '../user/user.component';
 import {FormsModule} from '@angular/forms';
 import {AppointmentService} from '../../../core/services/appointment.service';
+import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
 
 @Component({
   selector: 'app-make-appointment',
-  imports: [HeaderComponent, FooterComponent, UserComponent,
+  imports: [HeaderComponent, FooterComponent, UserComponent, LeftSideBarComponent,
     FormsModule
   ],
   templateUrl: './make-appointment.component.html',
@@ -25,7 +26,7 @@ export class MakeAppointmentComponent {
   }
 
   createAppointment() {
-    this.appointment.student=1;
+    this.appointment.student = 1;
     if (this.appointment.type === 'medecin') {
       this.appointment.professional = 2;
     } else if (this.appointment.type === 'infirmier') {

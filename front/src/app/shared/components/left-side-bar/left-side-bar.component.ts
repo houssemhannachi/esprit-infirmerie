@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-left-side-bar',
-  imports: [MakeAppointmentComponent],
+  imports: [],
   templateUrl: './left-side-bar.component.html',
   styleUrl: './left-side-bar.component.css'
 })
