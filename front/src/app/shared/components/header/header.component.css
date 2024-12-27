@@ -2,9 +2,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #B72126;
-  border-bottom: 1px solid #B72126;
+  padding: 5px 30px;
+  background: linear-gradient(to bottom, #4d0000, #B72126); /* Gradient from red to burgundy */
+  border-bottom: 1px solid #8B0000; /* Match the darker color for the border */
 }
 
 .logo img {
@@ -26,6 +26,7 @@ header {
 .nav-link:hover {
   color: #000000;
 }
+
 header .navigation {
   z-index: 10;
   position: relative;
