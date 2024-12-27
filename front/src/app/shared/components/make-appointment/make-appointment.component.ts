@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AppointmentService} from '../../../core/services/appointment.service';
 import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-make-appointment',
@@ -20,17 +21,11 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrl: './make-appointment.component.css'
 })
 export class MakeAppointmentComponent {
-  appointment: any = {
-    username: '',
-    grade: '',
-    occupation: '',
-    date: '',
-    notes: ''
-  };
   appointmentForm: FormGroup;
 
   constructor(private fb: FormBuilder,
               private appointmentService: AppointmentService,
+              private authService:AuthService,
               private router: Router,
               private route: ActivatedRoute) {
     this.appointmentForm = this.fb.group({
@@ -43,6 +38,7 @@ export class MakeAppointmentComponent {
   }
 
   createAppointment() {
+    this.appointmentForm.value.username=this.authService.getLoggedUser().username;
     this.appointmentService.createAppointment(this.appointmentForm.value).subscribe(
       (response) => {
         console.log('Appointment created successfully:', response);

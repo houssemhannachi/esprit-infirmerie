@@ -20,7 +20,7 @@ export class AuthService {
     }
   }
 
-  getUserTokens() {
+  getLoggedUser() {
     if (typeof window !== "undefined") {
       const loggedUser = window.localStorage.getItem(this.LOGGED_USER);
       return loggedUser ? JSON.parse(loggedUser) : null;
@@ -28,6 +28,10 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    return this.getUserTokens() != null;
+    return this.getLoggedUser() != null;
+  }
+
+  getUserRole(): string {
+    return this.getLoggedUser().authorities[0].authority.substring(5)
   }
 }

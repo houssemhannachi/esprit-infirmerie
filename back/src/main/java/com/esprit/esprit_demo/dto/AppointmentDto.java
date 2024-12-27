@@ -1,6 +1,7 @@
 package com.esprit.esprit_demo.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
