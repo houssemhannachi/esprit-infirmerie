@@ -16,8 +16,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let appointment of appointments">
-        <td>{{ appointment.student.username }}</td>
-        <td>{{ appointment.professional.occupation }}</td>
+        <td>{{ appointment.grade }}</td>
+        <td>{{ appointment.occupation === 'DOCTOR' ? 'Médecin' : (appointment.occupation === 'NURSE' ? 'Infirmier' : appointment.occupation) }}</td>
         <td>{{ appointment.date | date: 'yyyy-MM-dd' }}</td>
         <td>{{ appointment.notes }}</td>
         <td>

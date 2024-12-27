@@ -36,6 +36,7 @@ public class AppointmentService {
         appointment.setOccupation(Occupation.valueOf(appointmentDto.getOccupation()));
         appointment.setNotes(appointmentDto.getNotes());
         appointment.setDate(appointmentDto.getDate());
+        appointment.setGrade(appointmentDto.getGrade());
         return appointmentRepository.save(appointment);
     }
 

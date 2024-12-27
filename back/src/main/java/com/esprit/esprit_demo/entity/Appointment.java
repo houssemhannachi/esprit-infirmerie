@@ -31,5 +31,6 @@ public class Appointment {
     private Occupation occupation;
 
     private String notes;
+    private String grade;
     private Boolean state = false;
 }

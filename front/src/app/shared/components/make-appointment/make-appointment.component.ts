@@ -42,6 +42,7 @@ export class MakeAppointmentComponent {
     this.appointmentService.createAppointment(this.appointmentForm.value).subscribe(
       (response) => {
         console.log('Appointment created successfully:', response);
+        this.router.navigate(['user/appointments']);
       },
       (error) => {
         console.error('Error creating appointment:', error);
