@@ -5,13 +5,12 @@
   <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'" (click)="onButtonClick('x')">
     Dossier médical
   </button>
-  <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'"
-          (click)="onButtonClick('appointments')">Liste des rendez-vous
+  <button class="sidebar-button" (click)="onButtonClick('appointments')">Liste des rendez-vous
   </button>
   <div class="sidebar-footer">
     <span class="user-info">
       <i class="user-icon"></i>
-      {{username}}
+      {{ username }}
     </span>
   </div>
 </div>
