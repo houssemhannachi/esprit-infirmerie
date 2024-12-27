@@ -5,6 +5,7 @@ import {Appointment} from '../../models/Appointment';
 import {AppointmentService} from '../../../core/services/appointment.service';
 import {CommonModule, DatePipe} from '@angular/common';
 import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-appointment-list',
@@ -16,11 +17,11 @@ import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
 export class AppointmentListComponent implements OnInit {
   appointments: Appointment[] = [];
 
-  constructor(private appointmentService: AppointmentService, private datePipe: DatePipe) {
+  constructor(private appointmentService: AppointmentService, private datePipe: DatePipe, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.appointmentService.getAppointments().subscribe({
+    this.appointmentService.getAppointments(this.authService.getUsername()).subscribe({
       next: (data) => {
         this.appointments = data;
         console.log(this.appointments);

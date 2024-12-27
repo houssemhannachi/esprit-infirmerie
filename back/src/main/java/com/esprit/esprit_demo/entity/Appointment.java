@@ -13,8 +13,8 @@ public class Appointment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student")
-    private User student;
+    @JoinColumn(name = "patient")
+    private User patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor")

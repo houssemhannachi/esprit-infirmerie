@@ -34,4 +34,7 @@ export class AuthService {
   getUserRole(): string {
     return this.getLoggedUser().authorities[0].authority.substring(5)
   }
+  getUsername(): string {
+    return this.getLoggedUser().username;
+  }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class AppointmentService {
@@ -30,9 +31,9 @@ public class AppointmentService {
     }
 
     public Appointment saveAppointment(AppointmentDto appointmentDto) {
-        User student = userRepository.findByUsername(appointmentDto.getUsername());
+        User patient = userRepository.findByUsername(appointmentDto.getUsername());
         Appointment appointment = new Appointment();
-        appointment.setStudent(student);
+        appointment.setPatient(patient);
         appointment.setOccupation(Occupation.valueOf(appointmentDto.getOccupation()));
         appointment.setNotes(appointmentDto.getNotes());
         appointment.setDate(appointmentDto.getDate());
@@ -44,4 +45,26 @@ public class AppointmentService {
         appointmentRepository.deleteById(id);
     }
 
+    public List<Appointment> getAppointmentsByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user.getOccupation() == Occupation.DOCTOR) {
+            return getAppointmentsByDoctorOrNurse(user);
+        }
+        return getAppointmentsByTeacherOrStudent(user);
+    }
+
+    private List<Appointment> getAppointmentsByTeacherOrStudent(User user) {
+        return appointmentRepository.findAppointmentByPatient(user);
+    }
+
+    private List<Appointment> getAppointmentsByDoctorOrNurse(User user) {
+        boolean isNurse = user.getOccupation() == Occupation.NURSE;
+        User doctor = isNurse ? null : user;
+        User nurse = isNurse ? user : null;
+
+        return Stream.concat(
+                appointmentRepository.findAppointmentByOccupationAndStateFalse(user.getOccupation()).stream(),
+                appointmentRepository.findAppointmentByDoctorOrNurseAndStateTrue(doctor, nurse).stream()
+        ).toList();
+    }
 }

@@ -17,9 +17,10 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
+
     @GetMapping
-    public List<Appointment> getAllAppointments() {
-        return appointmentService.getAllAppointments();
+    public List<Appointment> getAppointmentsByUsername(@RequestParam String username) {
+        return appointmentService.getAppointmentsByUsername(username);
     }
 
     @GetMapping("/{id}")
