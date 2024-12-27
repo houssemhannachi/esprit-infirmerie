@@ -36,7 +36,7 @@ public class AuthController {
 
         userService.save(user);
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/login")
