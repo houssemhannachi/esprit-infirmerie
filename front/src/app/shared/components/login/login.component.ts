@@ -5,6 +5,7 @@ import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authService: AuthService) {
     this.loginFrom = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -29,7 +31,8 @@ export class LoginComponent {
     console.log(this.loginFrom.value);
 
     this.userService.login(this.loginFrom.value).pipe().subscribe({
-      next: () => {
+      next: (userData) => {
+        this.authService.saveLoggedUser(userData)
         this.router.navigate(['/user']);
       },
       error: (error) => {

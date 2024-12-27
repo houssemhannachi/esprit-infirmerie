@@ -5,8 +5,8 @@
     </a>
   </div>
   <nav class="navigation">
-    <a href="/login" class="nav-link">Se connecter</a>
-    <a href="/register" class="nav-link">S'inscrire</a>
-    <a href="/register" class="nav-link">Déconnexion</a>
+    <a href="/login" class="nav-link" *ngIf="!isLoggedIn()">Se connecter</a>
+    <a href="/register" class="nav-link" *ngIf="!isLoggedIn()">S'inscrire</a>
+    <a (click)="disconnect()" class="nav-link" *ngIf="isLoggedIn()">Déconnexion</a>
   </nav>
 </header>

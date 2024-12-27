@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/models/User';
+import {UserData} from '../../shared/auth/userData';
 
 
 interface UserLogin {
@@ -22,7 +23,7 @@ export class UserService {
     return this.http.post<User>(this.apiUrl + "/signup", user);
   }
 
-  login(user: UserLogin): Observable<UserLogin> {
-    return this.http.post<UserLogin>(this.apiUrl + "/login", user);
+  login(user: UserLogin): Observable<UserData> {
+    return this.http.post<UserData>(this.apiUrl + "/login", user);
   }
 }
