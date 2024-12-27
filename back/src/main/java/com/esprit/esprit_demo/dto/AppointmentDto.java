@@ -1,49 +1,24 @@
 package com.esprit.esprit_demo.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class AppointmentDto {
-    private Long student;
-    private Long professional;
+    private String username;
+    private String grade;
+    private String occupation;
     private Date date;
     private String notes;
 
-    public AppointmentDto(Long student, Long professional, Date date, String notes) {
-        this.student = student;
-        this.professional = professional;
+    public AppointmentDto(String username, String grade, String occupation, Date date, String notes) {
+        this.username = username;
+        this.grade = grade;
+        this.occupation = occupation;
         this.date = date;
-        this.notes = notes;
-    }
-
-    public Long getStudent() {
-        return student;
-    }
-
-    public void setStudent(Long student) {
-        this.student = student;
-    }
-
-    public Long getProfessional() {
-        return professional;
-    }
-
-    public void setProfessional(Long professional) {
-        this.professional = professional;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
         this.notes = notes;
     }
 }

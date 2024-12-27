@@ -4,6 +4,7 @@ import com.esprit.esprit_demo.dao.AppointmentRepository;
 import com.esprit.esprit_demo.dao.UserRepository;
 import com.esprit.esprit_demo.dto.AppointmentDto;
 import com.esprit.esprit_demo.entity.Appointment;
+import com.esprit.esprit_demo.entity.Occupation;
 import com.esprit.esprit_demo.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -29,30 +30,17 @@ public class AppointmentService {
     }
 
     public Appointment saveAppointment(AppointmentDto appointmentDto) {
-        User student = userRepository.findById(appointmentDto.getStudent())
-                .orElseThrow(() -> new RuntimeException("Student not found"));
-        User professional = userRepository.findById(appointmentDto.getProfessional())
-                .orElseThrow(() -> new RuntimeException("Professional not found"));
-
+        User student = userRepository.findByUsername(appointmentDto.getUsername());
         Appointment appointment = new Appointment();
         appointment.setStudent(student);
-        appointment.setProfessional(professional);
-        appointment.setDate(appointmentDto.getDate());
+        appointment.setOccupation(Occupation.valueOf(appointmentDto.getOccupation()));
         appointment.setNotes(appointmentDto.getNotes());
-
+        appointment.setDate(appointmentDto.getDate());
         return appointmentRepository.save(appointment);
     }
 
     public void deleteAppointment(Long id) {
         appointmentRepository.deleteById(id);
-    }
-
-    public List<Appointment> getAppointmentsByStudent(Long studentId) {
-        return appointmentRepository.findByStudentId(studentId);
-    }
-
-    public List<Appointment> getAppointmentsByProfessional(Long professionalId) {
-        return appointmentRepository.findByProfessionalId(professionalId);
     }
 
 }

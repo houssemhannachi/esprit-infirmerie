@@ -53,13 +53,5 @@ public class AppointmentController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/student/{studentId}")
-    public List<Appointment> getAppointmentsByStudent(@PathVariable Long studentId) {
-        return appointmentService.getAppointmentsByStudent(studentId);
-    }
 
-    @GetMapping("/professional/{professionalId}")
-    public List<Appointment> getAppointmentsByProfessional(@PathVariable Long professionalId) {
-        return appointmentService.getAppointmentsByProfessional(professionalId);
-    }
 }

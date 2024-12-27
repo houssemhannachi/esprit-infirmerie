@@ -13,15 +13,22 @@ public class Appointment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student")
     private User student;
 
     @ManyToOne
-    @JoinColumn(name = "professional_id", nullable = false)
-    private User professional;
+    @JoinColumn(name = "doctor")
+    private User doctor;
+
+    @ManyToOne
+    @JoinColumn(name = "nurse")
+    private User nurse;
 
     @Column(nullable = false)
     private Date date;
+
+    @Enumerated(EnumType.STRING)
+    private Occupation occupation;
 
     private String notes;
     private Boolean state = false;
