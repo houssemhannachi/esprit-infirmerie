@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -33,26 +34,27 @@ public class SecurityConfig {
         AuthenticationManager authenticationManager = authBuilder.build();
         http.authenticationManager(authenticationManager);
 
-        http
-                .csrf(csrf -> csrf.disable()) // In production, consider enabling CSRF and using tokens
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/home", "/public/**").permitAll()
-                        .requestMatchers("/appointments/**").permitAll()
-                        .requestMatchers("/student/**").hasRole("STUDENT")
-                        .requestMatchers("/teacher/**").hasRole("TEACHER")
-                        .requestMatchers("/physician/**").hasRole("PHYSICIAN")
-                        .requestMatchers("/nurse/**").hasRole("NURSE")
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/home", true)
-                )
-                .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                );
+//        http
+//                .csrf(csrf -> csrf.disable()) // In production, consider enabling CSRF and using tokens
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/", "/home", "/public/**").permitAll()
+//                        .requestMatchers("/appointments/**").permitAll()
+//                        .requestMatchers("/student/**").hasRole("STUDENT")
+//                        .requestMatchers("/teacher/**").hasRole("TEACHER")
+//                        .requestMatchers("/physician/**").hasRole("PHYSICIAN")
+//                        .requestMatchers("/nurse/**").hasRole("NURSE")
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(form -> form
+//                        .loginPage("/login").permitAll()
+//                        .defaultSuccessUrl("/home", true)
+//                )
+//                .logout(logout -> logout
+//                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                        .logoutSuccessUrl("/login?logout")
+//                        .permitAll()
+//                );
+        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth.requestMatchers("**").permitAll());
 
         return http.build();
     }

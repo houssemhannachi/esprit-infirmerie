@@ -2,47 +2,47 @@
 <div class="body-container">
   <app-welcome></app-welcome>
   <div class="login-container">
-  <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <h2>Inscription</h2>
+    <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="registerFrom">
+      <h2>Inscription</h2>
 
-    <div class="input-group">
-      <label for="nom">Nom :</label>
-      <input type="text" id="nom" name="nom" [(ngModel)]="formData.nom" required>
-    </div>
+      <div class="input-group">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" formControlName="lastName">
+      </div>
 
-    <div class="input-group">
-      <label for="prenom">Prénom :</label>
-      <input type="text" id="prenom" name="prenom" [(ngModel)]="formData.prenom" required>
-    </div>
+      <div class="input-group">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" formControlName="firstName">
+      </div>
 
-    <div class="input-group">
-      <label for="username">Nom d'utilisateur :</label>
-      <input type="text" id="username" name="username" [(ngModel)]="formData.username" required>
-    </div>
+      <div class="input-group">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" formControlName="username" required>
+      </div>
 
-    <div class="input-group">
-      <label for="userType">Occupation :</label>
-      <select id="userType" name="userType" [(ngModel)]="formData.userType" required>
-        <option value="" disabled selected>Choisir un type</option>
-        <option value="student">Étudiant</option>
-        <option value="nurse">Infirmier/Infirmière</option>
-        <option value="doctor">Médecin</option>
-        <option value="teacher">Enseignant</option>
-      </select>
-    </div>
+      <div class="input-group">
+        <label for="userType">Occupation :</label>
+        <select id="userType" name="occupation" formControlName="occupation" required>
+          <option value="" disabled selected>Choisir un type</option>
+          <option value="STUDENT">Étudiant</option>
+          <option value="NURSE">Infirmier/Infirmière</option>
+          <option value="DOCTOR">Médecin</option>
+          <option value="TEACHER">Enseignant</option>
+        </select>
+      </div>
 
-    <div class="input-group">
-      <label for="mail">Email :</label>
-      <input type="email" id="mail" name="mail" [(ngModel)]="formData.mail" required>
-    </div>
+      <div class="input-group">
+        <label for="mail">Email :</label>
+        <input type="email" id="mail" name="mail" formControlName="email">
+      </div>
 
-    <div class="input-group">
-      <label for="password">Mot de passe :</label>
-      <input type="password" id="password" name="password" [(ngModel)]="formData.password" required>
-    </div>
+      <div class="input-group">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" formControlName="password">
+      </div>
 
-    <button type="submit" name="submit">S'inscrire</button>
-  </form>
-</div>
+      <button type="submit" name="submit">S'inscrire</button>
+    </form>
+  </div>
 </div>
 <app-footer></app-footer>

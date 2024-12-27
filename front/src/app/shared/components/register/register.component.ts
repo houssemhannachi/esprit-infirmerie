@@ -1,26 +1,44 @@
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {WelcomeComponent} from '../welcome/welcome.component';
+import {UserService} from '../../../core/services/user.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
-  imports: [FormsModule, HeaderComponent, FooterComponent, WelcomeComponent]
+  imports: [FormsModule, HeaderComponent, FooterComponent, WelcomeComponent, ReactiveFormsModule]
 })
 export class RegisterComponent {
-  formData = {
-    nom: '',
-    prenom: '',
-    username: '',
-    userType: '',
-    mail: '',
-    password: ''
-  };
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.registerFrom = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      username: ['', Validators.required],
+      occupation: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  registerFrom: FormGroup;
 
   onSubmit() {
-    console.log(this.formData);
+    console.log(this.registerFrom.value);
+
+    this.userService.createUser(this.registerFrom.value).pipe().subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 }
