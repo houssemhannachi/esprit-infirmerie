@@ -6,7 +6,7 @@
       <h2 class="form-title">Prise de rendez-vous</h2>
 
       <!-- Classe Input -->
-      <div class="form-group">
+      <div class="form-group" *ngIf="userRole == 'STUDENT'">
         <label for="grade">Classe</label>
         <input type="text" id="grade" name="grade" formControlName="grade" required/>
       </div>
@@ -24,7 +24,7 @@
       <!-- Date Input -->
       <div class="form-group">
         <label for="date">Choisir une date</label>
-        <input type="date" id="date" name="date" formControlName="date" required/>
+        <input type="date" id="date" name="date" formControlName="date" [min]="todayDate"/>
       </div>
 
       <!-- Text Input -->

@@ -70,4 +70,18 @@ public class AppointmentService {
 
         return Stream.concat(stateFalseAppointments, stateTrueAppointments).toList();
     }
+
+    public Appointment updateAppointmentStateAndUser(Long appointmentId, String username) {
+        Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new RuntimeException("Appointment not found"));
+        appointment.setState(true);
+        User user = userRepository.findByUsername(username);
+        if ("doctor".equalsIgnoreCase(user.getOccupation().toString())) {
+            appointment.setDoctor(user);
+        } else if ("nurse".equalsIgnoreCase(user.getOccupation().toString())) {
+            appointment.setNurse(user);
+        } else {
+            throw new IllegalArgumentException("Invalid role: must be 'doctor' or 'nurse'");
+        }
+        return appointmentRepository.save(appointment);
+    }
 }

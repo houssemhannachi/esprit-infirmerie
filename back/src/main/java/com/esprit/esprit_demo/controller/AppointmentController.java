@@ -35,16 +35,6 @@ public class AppointmentController {
         return appointmentService.saveAppointment(appointmentDto);
     }
 
-    //@PutMapping("/{id}")
-    //public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
-    //  return appointmentService.getAppointmentById(id)
-    //          .map(existingAppointment -> {
-    //            appointment.setId(id);
-    //          return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
-    //    })
-    //  .orElse(ResponseEntity.notFound().build());
-    //}
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable Long id) {
         if (appointmentService.getAppointmentById(id).isPresent()) {
@@ -54,5 +44,11 @@ public class AppointmentController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping("/update-appointment/{appointmentId}")
+    public Appointment updateAppointmentStateAndUser(
+            @PathVariable Long appointmentId,
+            @RequestParam String username) {
+        return appointmentService.updateAppointmentStateAndUser(appointmentId, username);
+    }
 
 }

@@ -16,7 +16,7 @@ export class LeftSideBarComponent {
 
   constructor(private router: Router, private authService: AuthService) {
     this.userRole = authService.getUserRole();
-    this.username = this.authService.getUsername();
+    this.username = authService.getUsername();
   }
 
   onButtonClick(buttonLabel: string): void {

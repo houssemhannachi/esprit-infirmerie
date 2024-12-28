@@ -44,3 +44,47 @@ h2 {
   border-radius: 50%;
   background-color: green;
 }
+.appointment-table td button {
+  background-color: #007bff; /* Blue primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.appointment-table td button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+
+.appointment-table td button i {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.appointment-table td button[aria-label="Change State"] {
+  background-color: #28a745;
+}
+
+.appointment-table td button[aria-label="Change State"]:hover {
+  background-color: #176429;
+}
+
+.appointment-table td button[aria-label="Modify Medical Record"] {
+  background-color: #a22229;
+}
+
+.appointment-table td button[aria-label="Modify Medical Record"]:hover {
+  background-color: #650d0d;
+}
+
+.appointment-table td button:disabled {
+  background-color: #d6d6d6;
+  color: #000000;
+  cursor: not-allowed;
+}
+

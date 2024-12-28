@@ -14,10 +14,21 @@ export class AppointmentService {
 
   getAppointments(username: string): Observable<Appointment[]> {
     const params = new HttpParams().set('username', username);
-    return this.http.get<Appointment[]>(this.apiUrl,{params});
+    return this.http.get<Appointment[]>(this.apiUrl, {params});
   }
 
   createAppointment(appointment: Appointment): Observable<Appointment> {
     return this.http.post<Appointment>(this.apiUrl, appointment);
+  }
+
+  updateAppointment(id: number, username: string): Observable<any> {
+    const url = `${this.apiUrl}/update-appointment/${id}`;
+
+    // Prepare the query parameters for username and role
+    const params = new HttpParams()
+      .set('username', username)
+
+    // Make the POST request to the backend
+    return this.http.post(url, {}, {params});
   }
 }
