@@ -10,7 +10,7 @@
   padding-right: 20%;
 }
 .error-message {
-  color: red;
+  color: #590000;
   font-size: 0.9em;
   margin-top: 5px;
   display: block;
@@ -63,8 +63,8 @@
 
 /* Focus effect for input fields */
 .input-group input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  border-color: #f80000;
+  box-shadow: 0 0 8px rgb(77, 0, 0);
   outline: none;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .input-group select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  border-color: #f80000;
+  box-shadow: 0 0 8px rgb(77, 0, 0);
   outline: none;
 }
 

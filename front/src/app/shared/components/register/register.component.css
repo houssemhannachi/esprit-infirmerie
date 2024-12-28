@@ -102,3 +102,22 @@ button:active {
   background-color: #004085; /* Darker shade when clicked */
   transform: translateY(1px); /* Button depression effect */
 }
+
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.form-disabled-message {
+  display: block;
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+small {
+  display: block;
+  font-style: italic;
+  margin-top: 5px;
+  color: #590000
+}
