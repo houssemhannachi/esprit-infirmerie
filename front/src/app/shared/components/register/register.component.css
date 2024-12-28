@@ -10,7 +10,7 @@
   padding-right: 20%;
 }
 
-.login-form {
+.register-form {
   position: relative;
   z-index: 1;
   backdrop-filter: blur(10px); /* Apply blur effect to background */
@@ -23,7 +23,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2); /* Border with slight transparency */
 }
 
-.login-form h2 {
+.register-form h2 {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 22px;
