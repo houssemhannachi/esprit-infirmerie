@@ -48,6 +48,7 @@ export class DisplayAppointmentsComponent {
         this.calendarOptions = {
           initialView: 'dayGridMonth',
           plugins: [dayGridPlugin],
+          firstDay: 1,
           initialDate: new Date(),
           events: this.appointments.map(appointment => ({
             title: `${appointment.patient.firstName} ${appointment.patient.lastName} - ${appointment.notes}`,
