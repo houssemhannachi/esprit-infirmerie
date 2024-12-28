@@ -10,7 +10,7 @@ import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-add-medecine',
+  selector: 'app-add-medicine',
   imports: [ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
@@ -18,10 +18,10 @@ import {CommonModule} from '@angular/common';
     LeftSideBarComponent,
     FormsModule,
     CommonModule],
-  templateUrl: './add-medecine.component.html',
-  styleUrl: './add-medecine.component.css'
+  templateUrl: './add-medicine.component.html',
+  styleUrl: './add-medicine.component.css'
 })
-export class AddMedecineComponent {
+export class AddMedicineComponent {
   appointmentForm: FormGroup;
   userRole: string;
   todayDate: string;

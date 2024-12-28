@@ -6,6 +6,7 @@ import {MakeAppointmentComponent} from './shared/components/make-appointment/mak
 import {AppointmentListComponent} from './shared/components/appointment-list/appointment-list.component';
 import {AuthGuard} from './shared/auth/guard/auth.guard';
 import {DisplayAppointmentsComponent} from './shared/components/display-appointments/display-appointments.component';
+import {AddMedicineComponent} from './shared/components/add-medicine/add-medicine.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -14,5 +15,6 @@ export const routes: Routes = [
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'user/make-appointment', component: MakeAppointmentComponent, canActivate: [AuthGuard]},
   {path: 'user/appointments', component: AppointmentListComponent, canActivate: [AuthGuard]},
-  {path: 'user/display-appointments', component: DisplayAppointmentsComponent, canActivate: [AuthGuard]}
+  {path: 'user/display-appointments', component: DisplayAppointmentsComponent, canActivate: [AuthGuard]},
+  {path: 'user/add-medicine', component: AddMedicineComponent, canActivate: [AuthGuard]}
 ];

@@ -5,7 +5,7 @@
   <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'" (click)="onButtonClick('x')">
     Dossier médical
   </button>
-  <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('x')">
+  <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('add-medicine')">
     Demander médicament
   </button>
   <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('display-appointments')">
