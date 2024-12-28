@@ -40,30 +40,4 @@ export class AppointmentListComponent implements OnInit {
       }
     });
   }
-
-  alertAndChangeState(appointment: any): void {
-    const formattedDate = this.datePipe.transform(appointment.date, 'yyyy-MM-dd');
-    alert(`Tentative de modification du rendez-vous suivant :\n
-    - Patient : ${appointment.patient.lastName} ${appointment.patient.firstName}
-    - Date : ${formattedDate}`);
-
-    this.changeState(appointment);
-  }
-
-  changeState(appointment: Appointment) {
-    this.appointmentService.updateAppointment(appointment.id, this.username).subscribe({
-      next: (data) => {
-        this.getAllAppointments();
-      },
-      error: (err) => {
-        console.error('Error fetching appointments:', err);
-      }
-    });
-
-
-  }
-
-  modifyMedicalRecord(appointment: Appointment) {
-
-  }
 }
