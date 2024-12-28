@@ -6,14 +6,16 @@ import {FooterComponent} from '../footer/footer.component';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
 import {AuthService} from '../../auth/auth.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, HeaderComponent, FooterComponent, WelcomeComponent, ReactiveFormsModule],
+  imports: [FormsModule, HeaderComponent, FooterComponent, WelcomeComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  errorMessage:any;
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private router: Router,
@@ -36,7 +38,11 @@ export class LoginComponent {
         this.router.navigate(['/user']);
       },
       error: (error) => {
-        console.log(error);
+        if (error.status === 401) {
+          this.errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect.';
+        } else {
+          this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
+        }
       }
     })
   }

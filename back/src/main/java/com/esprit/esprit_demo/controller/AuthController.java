@@ -43,7 +43,7 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody User loginUser) {
         CustomUserDetails user = userService.loadUserByUsername(loginUser.getUsername());
 
-        if (user == null) {
+        if (user.getUser() == null) {
             return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
         if (!passwordEncoder.matches(loginUser.getPassword(), user.getPassword())) {

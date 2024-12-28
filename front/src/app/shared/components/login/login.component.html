@@ -13,6 +13,7 @@
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" formControlName="password">
       </div>
+      <span *ngIf="errorMessage" class="error-message">{{ errorMessage }}</span>
       <button type="submit" name="submit">Se connecter</button>
       <button type="button" (click)="redirectToSignUp()">S'inscrire</button>
     </form>
