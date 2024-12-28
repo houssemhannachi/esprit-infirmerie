@@ -11,7 +11,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     List<Appointment> findAppointmentByPatient(User patient);
 
-    List<Appointment> findAppointmentByDoctorOrNurseAndStateTrue(User doctor, User nurse);
+    List<Appointment> findAppointmentByDoctorAndStateTrue(User doctor);
+
+    List<Appointment> findAppointmentByNurseAndStateTrue(User nurse);
 
     List<Appointment> findAppointmentByOccupationAndStateFalse(Occupation occupation);
 

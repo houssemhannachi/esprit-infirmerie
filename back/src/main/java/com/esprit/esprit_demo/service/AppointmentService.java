@@ -59,12 +59,15 @@ public class AppointmentService {
 
     private List<Appointment> getAppointmentsByDoctorOrNurse(User user) {
         boolean isNurse = user.getOccupation() == Occupation.NURSE;
-        User doctor = isNurse ? null : user;
-        User nurse = isNurse ? user : null;
 
-        return Stream.concat(
-                appointmentRepository.findAppointmentByOccupationAndStateFalse(user.getOccupation()).stream(),
-                appointmentRepository.findAppointmentByDoctorOrNurseAndStateTrue(doctor, nurse).stream()
-        ).toList();
+        Stream<Appointment> stateFalseAppointments = appointmentRepository
+                .findAppointmentByOccupationAndStateFalse(user.getOccupation())
+                .stream();
+
+        Stream<Appointment> stateTrueAppointments = isNurse
+                ? appointmentRepository.findAppointmentByNurseAndStateTrue(user).stream()
+                : appointmentRepository.findAppointmentByDoctorAndStateTrue(user).stream();
+
+        return Stream.concat(stateFalseAppointments, stateTrueAppointments).toList();
     }
 }
