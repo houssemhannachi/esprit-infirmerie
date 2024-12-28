@@ -1,39 +1,25 @@
 <app-header></app-header>
 <div style="display: flex">
   <app-left-side-bar></app-left-side-bar>
-  <div class="appointment-container" style="width: 100%">
-    <form (ngSubmit)="createAppointment()" class="appointment-form" [formGroup]="appointmentForm">
-      <h2 class="form-title">Prise de rendez-vous</h2>
+  <div class="medicine-container" style="width: 100%">
+    <form (ngSubmit)="addMedicine()" class="medicine-form" [formGroup]="medicineForm">
+      <h2 class="form-title">Demander médicine</h2>
 
-      <!-- Classe Input -->
-      <div class="form-group" *ngIf="userRole == 'STUDENT'">
-        <label for="grade">Classe</label>
-        <input type="text" id="grade" name="grade" formControlName="grade" required/>
-      </div>
-
-      <!-- Type de rendez-vous Select -->
       <div class="form-group">
-        <label for="type">Type de rendez-vous</label>
-        <select id="type" name="type" formControlName="occupation" required>
-          <option value="" disabled selected>Choisir un type</option>
-          <option value="DOCTOR">Médecin</option>
-          <option value="NURSE">Infirmier</option>
-        </select>
+        <label for="name">Nom commercial</label>
+        <input type="text" id="name" name="name" formControlName="name"/>
       </div>
 
-      <!-- Date Input -->
       <div class="form-group">
-        <label for="date">Choisir une date</label>
-        <input type="date" id="date" name="date" formControlName="date" [min]="todayDate"/>
+        <label for="quantity">Quantité</label>
+        <input type="number" id="quantity" name="quantity" formControlName="quantity"/>
       </div>
 
-      <!-- Text Input -->
       <div class="form-group">
-        <label for="notes">Décrire votre état :</label>
-        <textarea id="notes" name="notes" formControlName="notes"></textarea>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" formControlName="description"></textarea>
       </div>
 
-      <!-- Submit Button -->
       <button type="submit" class="btn">Prendre rendez-vous</button>
     </form>
   </div>
