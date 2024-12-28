@@ -7,29 +7,17 @@
     <table class="appointment-table">
       <thead>
       <tr>
-        <th *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">Nom et prénom</th>
         <th *ngIf="userRole === 'STUDENT'">Classe</th>
-        <th *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">Occupation</th>
-        <th *ngIf="userRole === 'STUDENT' || userRole === 'TEACHER'">Type de rendez-vous</th>
+        <th>Type de rendez-vous</th>
         <th>Date</th>
         <th>État</th>
         <th>Réponse</th>
-        <th *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let appointment of appointments">
-        <td *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">
-          {{ appointment.patient.lastName }} {{ appointment.patient.firstName }}
-        </td>
         <td *ngIf="userRole === 'STUDENT'">{{ appointment.grade }}</td>
-        <td *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">
-          {{
-          appointment.patient.occupation === 'STUDENT' ? 'Étudiant' :
-            (appointment.patient.occupation === 'TEACHER' ? 'Professeur' : appointment.patient.occupation)
-          }}
-        </td>
-        <td *ngIf="userRole === 'STUDENT' || userRole === 'TEACHER'">
+        <td>
           {{
           appointment.occupation === 'DOCTOR' ? 'Médecin' :
             (appointment.occupation === 'NURSE' ? 'Infirmier' : appointment.occupation)
@@ -44,17 +32,6 @@
                 'green-circle': appointment.state
               }">
             </span>
-        </td>
-        <td *ngIf="userRole === 'DOCTOR' || userRole === 'NURSE'">
-          <button (click)="alertAndChangeState(appointment)"
-                  aria-label="Change State"
-                  [disabled]="appointment.state"
-                  [attr.title]="!appointment.state ? 'Accepter ce rendez-vous' : null">
-            <i class="fas fa-ticket-alt"></i>
-          </button>
-          <button (click)="modifyMedicalRecord(appointment)" aria-label="Modify Medical Record">
-            <i class="fas fa-file-medical"></i>
-          </button>
         </td>
       </tr>
       </tbody>

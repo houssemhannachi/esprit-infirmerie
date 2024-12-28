@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<div style="display: flex">
+  <app-left-side-bar></app-left-side-bar>
+  <div class="appointment-list-container" style="flex-grow: 1; padding: 20px;">
+    <div *ngIf="!calendarOptions">
+      Loading appointments...
+    </div>
+    <full-calendar *ngIf="calendarOptions" [options]="calendarOptions"></full-calendar>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,27 +1,27 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AppointmentService} from '../../../core/services/appointment.service';
+import {AuthService} from '../../auth/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import {UserComponent} from '../user/user.component';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AppointmentService} from '../../../core/services/appointment.service';
 import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../auth/auth.service';
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-make-appointment',
+  selector: 'app-add-medecine',
   imports: [ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
+    UserComponent,
     LeftSideBarComponent,
     FormsModule,
-    CommonModule
-  ],
-  templateUrl: './make-appointment.component.html',
-  styleUrl: './make-appointment.component.css'
+    CommonModule],
+  templateUrl: './add-medecine.component.html',
+  styleUrl: './add-medecine.component.css'
 })
-export class MakeAppointmentComponent {
+export class AddMedecineComponent {
   appointmentForm: FormGroup;
   userRole: string;
   todayDate: string;

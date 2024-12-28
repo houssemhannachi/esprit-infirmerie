@@ -1,0 +1,76 @@
+.fc {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Change header background color */
+.fc-toolbar {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Customize day cells */
+.fc-daygrid-day {
+  border: 1px solid #ddd;
+}
+
+/* Highlight today's cell in red */
+.fc-daygrid-day.fc-day-today {
+  background-color: #ffcccc; /* Red background for today */
+  color: #d00000;
+}
+
+/* Style events */
+.fc-event {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 13px;
+}
+
+.fc-event:hover {
+  background-color: #0056b3;
+}
+
+/* Style weekends */
+.fc-day-sat,
+.fc-day-sun {
+  background-color: #f8f9fa;
+}
+
+/* Customize month navigation buttons */
+.fc-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.fc-button:hover {
+  background-color: #0056b3;
+}
+
+.fc-button.fc-button-primary:disabled {
+  background-color: #cccccc;
+}
+
+/* Add spacing between events */
+.fc-daygrid-event {
+  margin: 2px 0;
+}
+
+/* Events styling */
+.fc-event {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Clickable events (state = false) */
+.pending-event {
+  cursor: pointer; /* Show pointer cursor */
+}
+
+.confirmed-event {
+  cursor: pointer; /* Default cursor */
+}

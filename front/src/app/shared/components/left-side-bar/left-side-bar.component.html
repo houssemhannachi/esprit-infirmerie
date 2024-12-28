@@ -5,7 +5,13 @@
   <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'" (click)="onButtonClick('x')">
     Dossier médical
   </button>
-  <button class="sidebar-button" (click)="onButtonClick('appointments')">Liste des rendez-vous
+  <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('x')">
+    Demander médicament
+  </button>
+  <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('display-appointments')">
+    Liste des rendez-vous
+  </button>
+  <button class="sidebar-button" *ngIf="userRole == 'TEACHER' || userRole == 'STUDENT'" (click)="onButtonClick('appointments')">Liste des rendez-vous
   </button>
   <div class="sidebar-footer">
     <span class="user-info">

@@ -32,6 +32,7 @@ export class AppointmentListComponent implements OnInit {
     this.appointmentService.getAppointments(this.authService.getUsername()).subscribe({
       next: (data) => {
         this.appointments = data;
+        console.log(this.appointments)
         this.appointments.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       },
       error: (err) => {
@@ -39,6 +40,7 @@ export class AppointmentListComponent implements OnInit {
       }
     });
   }
+
   alertAndChangeState(appointment: any): void {
     const formattedDate = this.datePipe.transform(appointment.date, 'yyyy-MM-dd');
     alert(`Tentative de modification du rendez-vous suivant :\n
