@@ -1,5 +1,6 @@
 export interface Medicine {
-  quantity: number;
-  name: string;
-  description: string;
+  id:number,
+  quantity: number,
+  name: string,
+  description: string
 }

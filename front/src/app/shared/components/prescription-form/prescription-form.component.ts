@@ -22,7 +22,7 @@ import {Prescription, PrescriptionService} from '../../../core/services/prescrip
   templateUrl: './prescription-form.component.html',
   styleUrl: './prescription-form.component.css'
 })
-export class PrescriptionFormComponent implements OnInit{
+export class PrescriptionFormComponent implements OnInit {
 
   prescriptionForm: FormGroup;
   medicineList: Medicine[] = [];
@@ -47,21 +47,32 @@ export class PrescriptionFormComponent implements OnInit{
     });
 
   }
+
   ngOnInit() {
     this.prescriptionService.getPrescriptionByAppointmentId(this.route.snapshot.params["appointmentId"]).subscribe(value => {
       if (value != null && value.id != null) {
+        this.savedPrescription = value;
         this.prescriptionForm.patchValue(value);
-        this.selectedMedicines = value.medicines;
+        this.selectedMedicines = value.medicines || []; // Ensure medicines are loaded
+        this.prescriptionForm.disable(); // Disable the form if a prescription is already saved
       }
     });
-
   }
 
-  isAppointmentValid(): boolean {
-    return this.savedPrescription != null && this.savedPrescription.id != null
+  isMedicineSelected(medicine: Medicine): boolean {
+    return this.selectedMedicines.some(selected => selected.id === medicine.id);
+  }
+
+  isFormDisabled(): boolean {
+    return this.savedPrescription != null && this.savedPrescription.id != null;
   }
 
   createPrescription() {
+    if (this.isFormDisabled()) {
+      console.warn('Cannot create a prescription when a saved one already exists.');
+      return;
+    }
+
     this.prescriptionForm.patchValue({appointmentId: this.route.snapshot.params["appointmentId"]});
 
     this.prescriptionService.createPrescription(this.prescriptionForm.value).subscribe(
