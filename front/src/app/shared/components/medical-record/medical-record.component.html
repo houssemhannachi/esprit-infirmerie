@@ -1,0 +1,99 @@
+<app-header></app-header>
+<div style="display: flex">
+
+  <app-left-side-bar></app-left-side-bar>
+  <div class="appointment-container" style="width: 100%">
+    <div class="patient-record">
+      <section class="patient-info">
+        <h2>Informations personnelles du patient</h2>
+        <div class="patient-details">
+          <div>
+            <b>Nom : {{user?.lastName}}</b>
+          </div>
+          <div>
+            <b>Prénom : {{user?.firstName}}</b>
+          </div>
+          <div>
+            <b>Occupation: {{user?.occupation === "STUDENT" ? "Etudiant" : "Enseignant"}}</b>
+          </div>
+        </div>
+      </section>
+
+      <section class="appointments">
+        <h2>Liste des rendez-vous</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Médecin</th>
+            <th>Infirmier</th>
+            <th>Remarques</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let appointment of appointments">
+            <td>{{ appointment.date | date: 'yyyy-MM-dd' }}</td>
+            <td>
+              {{ appointment.doctor ?
+              (appointment.doctor.firstName + ' ' + appointment.doctor.lastName) :
+              'Not Assigned' }}
+            </td>
+            <td>
+              {{ appointment.nurse ?
+              (appointment.nurse.firstName + ' ' + appointment.nurse.lastName) :
+              'Not Assigned' }}
+            </td>
+            <td>{{ appointment.notes }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="edit-form">
+        <h2>Modifier le dossier médical</h2>
+        <form (ngSubmit)="saveMedicalRecord()" class="medical-record-form" [formGroup]="medicalRecordForm">
+          <!-- Age Input -->
+          <div class="form-group">
+            <label for="age">Âge</label>
+            <input type="number" id="age" name="age" formControlName="age" required />
+          </div>
+
+          <!-- Weight Input -->
+          <div class="form-group">
+            <label for="weight">Poids (kg)</label>
+            <input type="number" id="weight" name="weight" formControlName="weight" required />
+          </div>
+
+          <!-- Height Input -->
+          <div class="form-group">
+            <label for="height">Taille (cm)</label>
+            <input type="number" id="height" name="height" formControlName="height" required />
+          </div>
+
+          <!-- Allergies Input -->
+
+
+          <!-- Blood Type Input -->
+          <div class="form-group">
+            <label for="bloodType">Groupe sanguin</label>
+            <input type="text" id="bloodType" name="bloodType" formControlName="bloodType" required />
+          </div>
+
+          <!-- Assurance Person Name Input -->
+          <div class="form-group">
+            <label for="assurancePersonName">Nom de la personne assurée</label>
+            <input type="text" id="assurancePersonName" name="assurancePersonName" formControlName="assurancePersonName" />
+          </div>
+          <div class="form-group">
+            <label for="allergies">Allergies</label>
+            <textarea id="allergies" name="allergies" formControlName="allergies"></textarea>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="btn">Enregistrer</button>
+        </form>
+      </section>
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>

@@ -11,4 +11,5 @@ import java.util.List;
 public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Long> {
     MedicalRecord findMedicalRecordByPatientUsername(String username);
 
+    MedicalRecord findMedicalRecordByPatientId(Long id);
 }

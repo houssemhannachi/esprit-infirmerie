@@ -1,0 +1,167 @@
+/* General Layout */
+.appointment-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Horizontal sections */
+.patient-record {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Patient Info Section */
+.patient-info {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.patient-details {
+  display: flex;
+  gap: 250px; /* Space between items */
+  flex-wrap: wrap;
+}
+
+.patient-details > div {
+  display: flex;
+  align-items: center;
+}
+
+.appointments {
+  background-color: #e9ecef;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointments table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointments th,
+.appointments td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Edit Form Section */
+.edit-form {
+  background-color: #f1f3f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Align Form Fields in Two Columns */
+.edit-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Full-Width Button */
+.edit-form button {
+  grid-column: span 2;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-form button:hover {
+  background-color: #0056b3;
+}
+
+/* General Form Styling */
+.medical-record-form {
+  margin: 0 auto;
+  width: 1000px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group Styling */
+.medical-record-form .form-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.medical-record-form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.medical-record-form input,
+.medical-record-form textarea,
+.medical-record-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.medical-record-form input:focus,
+.medical-record-form textarea:focus,
+.medical-record-form select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Textarea Styling */
+.medical-record-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+.medical-record-form .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.medical-record-form .btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.medical-record-form .btn:active {
+  background-color: #003d80;
+  transform: translateY(0);
+}
+
+/* Form Title Styling */
+.edit-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}

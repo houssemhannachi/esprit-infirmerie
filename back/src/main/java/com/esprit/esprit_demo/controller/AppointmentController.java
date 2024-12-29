@@ -23,11 +23,9 @@ public class AppointmentController {
         return appointmentService.getAppointmentsByUsername(username);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Appointment> getAppointmentById(@PathVariable Long id) {
-        return appointmentService.getAppointmentById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/patient-id/{id}")
+    public List<Appointment>  getAppointmentsByPatientId(@PathVariable Long id) {
+        return appointmentService.getAppointmentsByPatientId(id);
     }
 
     @PostMapping

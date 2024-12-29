@@ -31,4 +31,8 @@ export class AppointmentService {
     // Make the POST request to the backend
     return this.http.post(url, {}, {params});
   }
+
+  getAppointmentsByPatientId(patientId: number): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.apiUrl}/patient-id/${patientId}`);
+  }
 }

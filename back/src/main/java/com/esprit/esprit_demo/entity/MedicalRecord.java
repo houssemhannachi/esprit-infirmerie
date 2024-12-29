@@ -3,9 +3,6 @@ package com.esprit.esprit_demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
-import java.util.List;
-
 @Entity
 @Data
 public class MedicalRecord {
@@ -14,13 +11,16 @@ public class MedicalRecord {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "appointment")
+    @JoinColumn(name = "patient")
     private User patient;
 
-    @Column(nullable = false)
-    private Date birthDate;
+    private Integer age;
+    private Integer weight;
+    private Integer height;
 
     private String allergies;
     private String bloodType;
+    private String assurancePersonName;
+
 
 }

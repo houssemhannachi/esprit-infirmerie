@@ -84,4 +84,9 @@ public class AppointmentService {
         }
         return appointmentRepository.save(appointment);
     }
+
+    public List<Appointment> getAppointmentsByPatientId(Long id) {
+        User patient = userRepository.findById(id).orElse(null);
+        return appointmentRepository.findAppointmentByPatient(patient);
+    }
 }

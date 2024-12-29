@@ -1,9 +1,8 @@
 package com.esprit.esprit_demo.controller;
 
-import com.esprit.esprit_demo.dto.AppointmentDto;
 import com.esprit.esprit_demo.entity.Appointment;
-import com.esprit.esprit_demo.service.AppointmentService;
-import org.springframework.http.ResponseEntity;
+import com.esprit.esprit_demo.entity.MedicalRecord;
+import com.esprit.esprit_demo.service.MedicalRecordService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,48 +10,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/medical-record")
 public class MedicalRecordController {
-    private final AppointmentService appointmentService;
+    private final MedicalRecordService medicalRecordService;
 
-    public MedicalRecordController(AppointmentService appointmentService) {
-        this.appointmentService = appointmentService;
+    public MedicalRecordController(MedicalRecordService medicalRecordService) {
+        this.medicalRecordService = medicalRecordService;
     }
 
-
-    @GetMapping
-    public List<Appointment> getAppointmentsByUsername(@RequestParam String username) {
-        return appointmentService.getAppointmentsByUsername(username);
+    @PostMapping("/{id}")
+    public MedicalRecord createAppointment(@PathVariable Long id, @RequestBody MedicalRecord medicalRecord) {
+        return medicalRecordService.saveMedicalRecord(id, medicalRecord);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Appointment> getAppointmentById(@PathVariable Long id) {
-        return appointmentService.getAppointmentById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/patient-id/{id}")
+    public MedicalRecord getMedicalRecordByPatientId(@PathVariable Long id) {
+        return medicalRecordService.getMedicalRecordByPatientId(id);
     }
-
-    @PostMapping
-    public Appointment createAppointment(@RequestBody AppointmentDto appointmentDto) {
-        return appointmentService.saveAppointment(appointmentDto);
-    }
-
-    //@PutMapping("/{id}")
-    //public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
-    //  return appointmentService.getAppointmentById(id)
-    //          .map(existingAppointment -> {
-    //            appointment.setId(id);
-    //          return ResponseEntity.ok(appointmentService.saveAppointment(appointment));
-    //    })
-    //  .orElse(ResponseEntity.notFound().build());
-    //}
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable Long id) {
-        if (appointmentService.getAppointmentById(id).isPresent()) {
-            appointmentService.deleteAppointment(id);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-
 }
