@@ -2,7 +2,7 @@
   <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'"
           (click)="onButtonClick('make-appointment')">Prendre Rendez-vous
   </button>
-  <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'" (click)="onButtonClick('x')">
+  <button class="sidebar-button" *ngIf="userRole == 'STUDENT' || userRole == 'TEACHER'" (click)="toMedicalRecord('medical-record/')">
     Dossier médical
   </button>
   <button class="sidebar-button" *ngIf="userRole == 'NURSE' || userRole == 'DOCTOR'" (click)="onButtonClick('add-medicine')">

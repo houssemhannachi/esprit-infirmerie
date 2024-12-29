@@ -6,7 +6,6 @@ import com.esprit.esprit_demo.entity.Appointment;
 import com.esprit.esprit_demo.entity.Occupation;
 import com.esprit.esprit_demo.entity.User;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +27,9 @@ public class UserService {
     public User getUserByAppointmentId(Long id) {
         Appointment appointment = appointmentRepository.findById(id).get();
         return appointment.getPatient();
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

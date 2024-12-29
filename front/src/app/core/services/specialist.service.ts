@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Medicine} from '../../shared/models/Medicine';
 import {MedicalRecord} from '../../shared/models/MedicalRecord';
 import {Appointment} from '../../shared/models/Appointment';
+import {User} from '../../shared/models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {Appointment} from '../../shared/models/Appointment';
 export class SpecialistService {
   private medicineApiUrl = '/server/medicine';
   private medicalRecordUrl = '/server/medical-record';
+  private userUrl = '/server/users';
 
   constructor(private http: HttpClient) {
   }
@@ -29,4 +31,10 @@ export class SpecialistService {
 
 
   }
+
+  getUserByUsername(username: any): Observable<User> {
+    const url = `${this.userUrl}/${username}`;
+    return this.http.get<User>(url);
+  }
+
 }
