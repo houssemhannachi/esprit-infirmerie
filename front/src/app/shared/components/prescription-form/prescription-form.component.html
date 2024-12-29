@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div style="display: flex">
+  <app-left-side-bar></app-left-side-bar>
+  <div class="appointment-container" style="width: 100%">
+    <form (ngSubmit)="createPrescription()" class="appointment-form" [formGroup]="prescriptionForm">
+      <button (click)="medicalRecord()" class="btn-small" style="float: right;">Consulter dossier médical<i></i></button>
+      <br><br>
+      <h2 class="form-title">Prise de remplir l'ordonnance</h2>
+
+
+      <div class="form-group">
+        <label for="medicines">Médicaments :</label>
+        <div id="medicines">
+          <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+            <tr style="border: 1px solid #ccc;">
+              <th style="border: 1px solid #ccc; padding: 8px;">Select</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Medicine Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let medicine of medicineList; let i = index" style="border: 1px solid #ccc;">
+              <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">
+                <input
+                  type="checkbox"
+                  [id]="'medicine' + i"
+                  [value]="medicine"
+                  (change)="onMedicineChange($event, medicine)"
+                />
+              </td>
+              <td style="border: 1px solid #ccc; padding: 8px;">
+                <label [for]="'medicine' + i">{{ medicine.name }}</label>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Error message for validation -->
+        <div *ngIf="prescriptionForm.get('medicines')?.invalid && prescriptionForm.get('medicines')?.touched">
+          <small class="error" style="color: red;">Please select at least one medicine.</small>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="remarks">Remarques : </label>
+        <textarea id="remarks" name="remarks" formControlName="remarks"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Enregistrer</button>
+
+      <button (click)="goTo()" class="btn" style="margin-top: 10px;">Demander médicament</button>
+    </form>
+  </div>
+
+</div>
+<app-footer></app-footer>

@@ -42,7 +42,8 @@ export class AddMedicineComponent {
     this.specialistService.addMedicine(this.medicineForm.value).subscribe(
       (response) => {
         console.log('Medicine created successfully:', response);
-        this.router.navigate(['user']);
+        this.router.navigate(['user/display-appointments']);
+
       },
       (error) => {
         console.error('Error creating appointment:', error);

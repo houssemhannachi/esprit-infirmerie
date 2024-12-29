@@ -6,10 +6,12 @@ import com.esprit.esprit_demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
     List<Appointment> findAppointmentByPatient(User patient);
+//    Optional<Appointment> findById(Long id);
 
     List<Appointment> findAppointmentByDoctorAndStateTrue(User doctor);
 

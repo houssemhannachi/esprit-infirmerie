@@ -3,10 +3,10 @@
   <app-left-side-bar></app-left-side-bar>
   <div class="medicine-container" style="width: 100%">
     <form (ngSubmit)="addMedicine()" class="medicine-form" [formGroup]="medicineForm">
-      <h2 class="form-title">Demander médicine</h2>
+      <h2 class="form-title">Demander médicament</h2>
 
       <div class="form-group">
-        <label for="name">Nom commercial</label>
+        <label for="name">Nom médicament</label>
         <input type="text" id="name" name="name" formControlName="name"/>
       </div>
 
@@ -20,7 +20,7 @@
         <textarea id="description" name="description" formControlName="description"></textarea>
       </div>
 
-      <button type="submit" class="btn">Prendre rendez-vous</button>
+      <button type="submit" class="btn">Enregistrer</button>
     </form>
   </div>
 

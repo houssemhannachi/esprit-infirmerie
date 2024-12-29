@@ -7,7 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import {CommonModule, DatePipe} from '@angular/common';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component'; // Import the DayGrid plugin
+import {LeftSideBarComponent} from '../left-side-bar/left-side-bar.component';
+import {Router} from '@angular/router'; // Import the DayGrid plugin
 
 @Component({
   selector: 'app-display-appointments',
@@ -26,7 +27,8 @@ export class DisplayAppointmentsComponent {
   constructor(
     private appointmentService: AppointmentService,
     private authService: AuthService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {
     this.userRole = this.authService.getUserRole();
     this.username = authService.getUsername();
@@ -80,8 +82,7 @@ export class DisplayAppointmentsComponent {
 // Function to handle state = true
   handleTrueStateAppointment(appointment: any) {
     console.log('Confirmed appointment:', appointment);
-    alert(`This is a confirmed appointment with ${appointment.patient.firstName} ${appointment.patient.lastName}`);
-    // Add more logic for state = true
+    this.router.navigate(['prescription/' + appointment.id]);
   }
 
   handleFalseStateAppointment(appointment: any): void {
