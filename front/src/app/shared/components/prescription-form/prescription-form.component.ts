@@ -29,7 +29,7 @@ export class PrescriptionFormComponent implements OnInit {
   selectedMedicines: any[] = [];
   private patientId: number = 0;
   private savedPrescription: Prescription | null = null;
-
+  userRole: any;
 
   constructor(private fb: FormBuilder,
               private prescriptionService: PrescriptionService,
@@ -38,6 +38,7 @@ export class PrescriptionFormComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) {
+    this.userRole = authService.getUserRole();
     appointmentService.getUserByAppointmentId(this.route.snapshot.params["appointmentId"]).subscribe(value => this.patientId = value.id)
     medicineService.getMedicines().subscribe(value => this.medicineList = value);
     this.prescriptionForm = this.fb.group({

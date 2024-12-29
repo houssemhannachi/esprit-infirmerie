@@ -8,13 +8,13 @@
         <h2>Informations personnelles du patient</h2>
         <div class="patient-details">
           <div>
-            <b>Nom : {{user?.lastName}}</b>
+            <b>Nom : {{patient?.lastName}}</b>
           </div>
           <div>
-            <b>Prénom : {{user?.firstName}}</b>
+            <b>Prénom : {{patient?.firstName}}</b>
           </div>
           <div>
-            <b>Occupation: {{user?.occupation === "STUDENT" ? "Etudiant" : "Enseignant"}}</b>
+            <b>Occupation: {{patient?.occupation === "STUDENT" ? "Etudiant" : "Enseignant"}}</b>
           </div>
         </div>
       </section>
@@ -28,6 +28,7 @@
             <th>Médecin</th>
             <th>Infirmier</th>
             <th>Remarques</th>
+            <th>Ordonnance</th>
           </tr>
           </thead>
           <tbody>
@@ -44,52 +45,71 @@
               'Not Assigned' }}
             </td>
             <td>{{ appointment.notes }}</td>
+            <td>
+              <ng-container *ngIf="appointment.prescription?.remarks; else noPrescription">
+                <a [href]="'/prescription/' + appointment.id">
+                  {{ appointment.prescription.remarks }}</a>
+              </ng-container>
+              <ng-template #noPrescription>
+                Pas d'ordonnance
+              </ng-template>
+            </td>
           </tr>
           </tbody>
         </table>
       </section>
 
       <section class="edit-form">
-        <h2>Modifier le dossier médical</h2>
-        <form (ngSubmit)="saveMedicalRecord()" class="medical-record-form" [formGroup]="medicalRecordForm">
+        <h2 *ngIf="patient.id != user.id">Modifier le dossier médical</h2>
+        <h2 *ngIf="patient.id == user.id">Consulter le dossier médical</h2>
+        <form
+          (ngSubmit)="saveMedicalRecord()"
+          class="medical-record-form"
+          [formGroup]="medicalRecordForm"
+          [class.disabled]="patient.id == user.id">
           <!-- Age Input -->
           <div class="form-group">
             <label for="age">Âge</label>
-            <input type="number" id="age" name="age" formControlName="age" required />
+            <input type="number" id="age" name="age" formControlName="age" [disabled]="patient.id == user.id" required/>
           </div>
 
           <!-- Weight Input -->
           <div class="form-group">
             <label for="weight">Poids (kg)</label>
-            <input type="number" id="weight" name="weight" formControlName="weight" required />
+            <input type="number" id="weight" name="weight" formControlName="weight" [disabled]="patient.id == user.id"
+                   required/>
           </div>
 
           <!-- Height Input -->
           <div class="form-group">
             <label for="height">Taille (cm)</label>
-            <input type="number" id="height" name="height" formControlName="height" required />
+            <input type="number" id="height" name="height" formControlName="height" [disabled]="patient.id == user.id"
+                   required/>
           </div>
-
-          <!-- Allergies Input -->
-
 
           <!-- Blood Type Input -->
           <div class="form-group">
             <label for="bloodType">Groupe sanguin</label>
-            <input type="text" id="bloodType" name="bloodType" formControlName="bloodType" required />
+            <input type="text" id="bloodType" name="bloodType" formControlName="bloodType"
+                   [disabled]="patient.id == user.id" required/>
           </div>
 
           <!-- Assurance Person Name Input -->
           <div class="form-group">
             <label for="assurancePersonName">Nom de la personne assurée</label>
-            <input type="text" id="assurancePersonName" name="assurancePersonName" formControlName="assurancePersonName" />
+            <input type="text" id="assurancePersonName" name="assurancePersonName" formControlName="assurancePersonName"
+                   [disabled]="patient.id == user.id"/>
           </div>
+
+          <!-- Allergies Input -->
           <div class="form-group">
             <label for="allergies">Allergies</label>
-            <textarea id="allergies" name="allergies" formControlName="allergies"></textarea>
+            <textarea id="allergies" name="allergies" formControlName="allergies"
+                      [disabled]="patient.id == user.id"></textarea>
           </div>
+
           <!-- Submit Button -->
-          <button type="submit" class="btn">Enregistrer</button>
+          <button type="submit" class="btn" *ngIf="patient.id != user.id">Enregistrer</button>
         </form>
       </section>
     </div>

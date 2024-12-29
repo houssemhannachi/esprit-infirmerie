@@ -10,4 +10,5 @@ export interface Appointment {
   state: boolean;
   occupation: string;
   grade: string;
+  prescription: any;
 }

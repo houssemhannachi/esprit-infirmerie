@@ -47,7 +47,7 @@ public class AppointmentService {
 
     public List<Appointment> getAppointmentsByUsername(String username) {
         User user = userRepository.findByUsername(username);
-        if (user.getOccupation() == Occupation.DOCTOR) {
+        if (user.getOccupation() == Occupation.DOCTOR || user.getOccupation() == Occupation.NURSE) {
             return getAppointmentsByDoctorOrNurse(user);
         }
         return getAppointmentsByTeacherOrStudent(user);

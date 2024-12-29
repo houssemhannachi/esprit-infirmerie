@@ -20,6 +20,6 @@ export const routes: Routes = [
   {path: 'user/display-appointments', component: DisplayAppointmentsComponent, canActivate: [AuthGuard]},
   {path: 'user/add-medicine', component: AddMedicineComponent, canActivate: [AuthGuard]},
   {path: 'prescription/:appointmentId', component: PrescriptionFormComponent, canActivate: [AuthGuard]},
-  {path: 'user/medical-record/:id', component: MedicalRecordComponent}
+  {path: 'user/medical-record/:id', component: MedicalRecordComponent, canActivate: [AuthGuard]}
 
 ];

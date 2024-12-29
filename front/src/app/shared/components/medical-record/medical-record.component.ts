@@ -8,6 +8,9 @@ import {HeaderComponent} from '../header/header.component';
 import {CommonModule} from '@angular/common';
 import {UserService} from '../../../core/services/user.service';
 import {SpecialistService} from '../../../core/services/specialist.service';
+import {PrescriptionService} from '../../../core/services/prescription.service';
+import {Appointment} from '../../models/Appointment';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-medical-record',
@@ -17,12 +20,15 @@ import {SpecialistService} from '../../../core/services/specialist.service';
 })
 export class MedicalRecordComponent implements OnInit {
   patientId: any;
-  appointments: any;
-  user: any;
+  appointments: Appointment[] = [];
+  patient: any;
   medicalRecordForm: any;
   medicalRecord: any;
+  username: any;
+  user: any;
 
-  constructor(private specialistService: SpecialistService, private fb: FormBuilder, private route: ActivatedRoute, private userService: UserService, private appointmentService: AppointmentService) {
+
+  constructor(private authService: AuthService, private prescriptionService: PrescriptionService, private specialistService: SpecialistService, private fb: FormBuilder, private route: ActivatedRoute, private userService: UserService, private appointmentService: AppointmentService) {
     this.medicalRecordForm = this.fb.group({
       id: '',
       age: ['', [Validators.required]],
@@ -32,19 +38,31 @@ export class MedicalRecordComponent implements OnInit {
       bloodType: ['', [Validators.required]],
       assurancePersonName: ['']
     });
+    this.patientId = this.route.snapshot.paramMap.get('id');
+    this.getAppointmentsByPatientId(this.patientId);
+    this.getPatientById(this.patientId);
+    this.username = authService.getUsername();
+    this.getUserByUsername(this.username)
+    this.getMedicalRecordByPatientId(this.patientId);
   }
 
   ngOnInit(): void {
-    this.patientId = this.route.snapshot.paramMap.get('id');
-    this.getAppointmentsByPatientId(this.patientId);
-    this.getUserById(this.patientId);
-    this.getMedicalRecordByPatientId(this.patientId);
   }
 
   getAppointmentsByPatientId(patientId: any) {
     this.appointmentService.getAppointmentsByPatientId(patientId).subscribe({
-      next: (data) => {
-        this.appointments = data;
+      next: (appointments) => {
+        this.appointments = appointments;
+        this.appointments.forEach((appointment) => {
+          this.prescriptionService.getPrescriptionByAppointmentId(appointment.id).subscribe({
+            next: (prescriptions) => {
+              appointment.prescription = prescriptions;
+            },
+            error: (err) => {
+              console.error(`Error fetching prescriptions for appointment ${appointment.id}:`, err);
+            }
+          });
+        });
       },
       error: (err) => {
         console.error('Error fetching appointments:', err);
@@ -52,10 +70,11 @@ export class MedicalRecordComponent implements OnInit {
     });
   }
 
-  getUserById(userId: any) {
+
+  getPatientById(userId: any) {
     this.userService.getUserById(userId).subscribe({
       next: (data) => {
-        this.user = data;
+        this.patient = data;
       },
       error: (err) => {
         console.error('Error fetching user:', err);
@@ -97,4 +116,14 @@ export class MedicalRecordComponent implements OnInit {
     });
   }
 
+  getUserByUsername(username: any) {
+    this.specialistService.getUserByUsername(username).subscribe({
+      next: (data) => {
+        this.user = data;
+      },
+      error: (err) => {
+        console.error('Error fetching user:', err);
+      }
+    });
+  }
 }
